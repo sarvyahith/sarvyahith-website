@@ -1,0 +1,203 @@
+/* ==========================
+        VOLUNTEER
+========================== */
+
+.volunteer{
+
+    padding:100px 8%;
+
+    background:white;
+
+}
+
+.volunteer-container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:1.1fr 1fr;
+
+    gap:70px;
+
+    align-items:center;
+
+}
+
+.volunteer-image{
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+/* Magenta background shape */
+
+.volunteer-image::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:80%;
+
+    height:85%;
+
+    background:#E9B6C8;
+
+    border-radius:25px;
+
+    left:-20px;
+
+    bottom:-20px;
+
+    z-index:0;
+
+}
+
+.volunteer-image img{
+
+    width:100%;
+
+    max-width:480px;
+
+    border-radius:20px;
+
+    object-fit:cover;
+
+    position:relative;
+
+    z-index:1;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+
+    transition:.4s;
+
+}
+
+.volunteer-image img:hover{
+
+    transform:scale(1.03);
+
+}
+
+
+.volunteer-content h2{
+
+    font-size:2.7rem;
+
+    color:#3B2B35;
+
+    margin:20px 0;
+
+}
+
+.volunteer-content p{
+
+    color:#555;
+
+    line-height:1.8;
+
+    margin-bottom:30px;
+
+}
+
+.volunteer-content ul{
+
+    list-style:none;
+
+    margin-bottom:35px;
+
+}
+
+.volunteer-content li{
+
+    margin-bottom:18px;
+
+    color:#444;
+
+    font-size:1.05rem;
+
+}
+
+.volunteer-content i{
+
+    color:#A0285A;
+
+    margin-right:12px;
+
+    width:22px;
+
+}
+
+.volunteer-btn{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:15px 36px;
+
+    background:#A0285A;
+
+    color:white;
+
+    border-radius:40px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+    box-shadow:0 8px 20px rgba(160,40,90,.25);
+
+}
+
+.volunteer-btn:hover{
+
+    background:#7C1D47;
+
+    transform:translateY(-3px);
+
+}
+
+.volunteer-content h2{
+
+    font-size:2.2rem;
+
+}
+.section-tag{
+
+    color:#A0285A;
+
+    font-weight:600;
+
+    letter-spacing:2px;
+
+    position:relative;
+
+}
+
+.section-tag::after{
+
+    content:"";
+
+    width:60px;
+
+    height:3px;
+
+    background:#D4AF37;
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-8px;
+
+}
