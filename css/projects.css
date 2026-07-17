@@ -4,19 +4,23 @@
 
 .projects{
 
-    padding:100px 8%;
+    padding:160px 8% 100px;
 
     background:#F5EBDD;
 
 }
 
+/* ==========================
+        SECTION TITLE
+========================== */
+
 .section-title{
 
     text-align:center;
 
-    max-width:700px;
+    max-width:750px;
 
-    margin:auto;
+    margin:0 auto 70px;
 
 }
 
@@ -28,15 +32,39 @@
 
     letter-spacing:2px;
 
+    position:relative;
+
+    display:inline-block;
+
+}
+
+.section-title span::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    bottom:-10px;
+
+    width:60px;
+
+    height:3px;
+
+    background:#D4AF37;
+
 }
 
 .section-title h2{
 
     font-size:2.8rem;
 
-    margin:15px 0;
-
     color:#3B2B35;
+
+    margin:25px 0 15px;
 
 }
 
@@ -46,9 +74,13 @@
 
     line-height:1.8;
 
-    margin-bottom:60px;
+    font-size:1rem;
 
 }
+
+/* ==========================
+        PROJECT GRID
+========================== */
 
 .project-container{
 
@@ -58,23 +90,31 @@
 
     display:grid;
 
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
 
     gap:40px;
 
 }
 
+/* ==========================
+        PROJECT CARD
+========================== */
+
 .project-card{
 
     background:white;
 
-    border-radius:20px;
+    border-radius:22px;
 
     overflow:hidden;
 
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
 
     transition:.35s;
+
+    display:flex;
+
+    flex-direction:column;
 
 }
 
@@ -82,13 +122,15 @@
 
     transform:translateY(-8px);
 
+    box-shadow:0 18px 40px rgba(0,0,0,.15);
+
 }
 
 .project-card img{
 
     width:100%;
 
-    height:260px;
+    height:240px;
 
     object-fit:cover;
 
@@ -102,15 +144,27 @@
 
 }
 
+/* ==========================
+        CONTENT
+========================== */
+
 .project-content{
 
-    padding:25px;
+    padding:28px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    flex:1;
 
 }
 
 .project-content h3{
 
     color:#A0285A;
+
+    font-size:1.4rem;
 
     margin-bottom:15px;
 
@@ -124,6 +178,8 @@
 
     margin-bottom:20px;
 
+    flex:1;
+
 }
 
 .project-content a{
@@ -132,13 +188,25 @@
 
     font-weight:600;
 
+    transition:.3s;
+
 }
+
+.project-content a:hover{
+
+    color:#7C1D47;
+
+}
+
+/* ==========================
+        BUTTON
+========================== */
 
 .project-btn{
 
     text-align:center;
 
-    margin-top:50px;
+    margin-top:60px;
 
 }
 
@@ -150,9 +218,11 @@
 
     color:white;
 
-    padding:15px 35px;
+    padding:15px 38px;
 
-    border-radius:30px;
+    border-radius:40px;
+
+    font-weight:600;
 
     transition:.3s;
 
@@ -162,19 +232,93 @@
 
     background:#7C1D47;
 
+    transform:translateY(-3px);
+
 }
+
+/* ==========================
+        FOOTER
+========================== */
+
+.footer{
+
+    background:#A0285A;
+
+    color:white;
+
+    text-align:center;
+
+    padding:25px;
+
+    margin-top:80px;
+
+}
+
+.footer p{
+
+    font-size:.95rem;
+
+    letter-spacing:.5px;
+
+}
+
+/* ==========================
+        MOBILE
+========================== */
 
 @media(max-width:900px){
 
-.project-container{
+.projects{
 
-    grid-template-columns:1fr;
+    padding:130px 6% 80px;
 
 }
 
 .section-title h2{
 
     font-size:2.2rem;
+
+}
+
+.project-container{
+
+    grid-template-columns:1fr;
+
+    gap:30px;
+
+}
+
+.project-card img{
+
+    height:220px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.section-title h2{
+
+    font-size:1.8rem;
+
+}
+
+.project-content{
+
+    padding:22px;
+
+}
+
+.project-content h3{
+
+    font-size:1.2rem;
+
+}
+
+.project-content p{
+
+    font-size:.95rem;
 
 }
 
