@@ -1,0 +1,99 @@
+/* ================= CONTACT ================= */
+
+.contact{
+
+    background:#F8F4ED;
+
+    padding:100px 8%;
+
+}
+
+.contact-box{
+
+    max-width:700px;
+
+    margin:auto;
+
+    background:#F3D7DD;
+
+    padding:60px;
+
+    border-radius:35px;
+
+    text-align:center;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.contact-box h2{
+
+    font-size:42px;
+
+    color:#3B2B35;
+
+    margin:15px 0;
+
+}
+
+.contact-box p{
+
+    color:#555;
+
+    line-height:1.8;
+
+    margin-bottom:40px;
+
+}
+
+.contact-item{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:18px;
+
+    background:white;
+
+    padding:18px 25px;
+
+    border-radius:18px;
+
+    margin-bottom:18px;
+
+    transition:.3s;
+
+}
+
+.contact-item:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.contact-item i{
+
+    color:#A1265C;
+
+    font-size:22px;
+
+}
+
+.contact-item a{
+
+    color:#3B2B35;
+
+    text-decoration:none;
+
+    font-size:17px;
+
+}
+
+.contact-item a:hover{
+
+    color:#A1265C;
+
+}
