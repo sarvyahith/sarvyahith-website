@@ -80,6 +80,8 @@
 
     font-size:22px;
 
+    min-width:25px;
+
 }
 
 .contact-item a{
@@ -89,6 +91,8 @@
     text-decoration:none;
 
     font-size:17px;
+
+    word-break:break-word;
 
 }
 
@@ -102,7 +106,7 @@
         MOBILE VIEW
 ========================== */
 
-@media (max-width:768px){
+@media(max-width:768px){
 
 .contact{
 
@@ -112,27 +116,23 @@
 
 .contact-box{
 
-    width:100%;
+    max-width:100%;
 
-    padding:30px 22px;
+    padding:35px 20px;
 
-    border-radius:20px;
-
-}
-
-.contact h2{
-
-    font-size:2rem;
-
-    text-align:center;
+    border-radius:22px;
 
 }
 
-.contact p{
+.contact-box h2{
+
+    font-size:32px;
+
+}
+
+.contact-box p{
 
     font-size:15px;
-
-    text-align:center;
 
     margin-bottom:30px;
 
@@ -140,9 +140,13 @@
 
 .contact-item{
 
-    padding:14px 16px;
+    justify-content:flex-start;
 
-    gap:15px;
+    text-align:left;
+
+    padding:16px;
+
+    gap:14px;
 
 }
 
@@ -156,13 +160,17 @@
 
     font-size:15px;
 
-    word-break:break-word;
+    flex:1;
 
 }
 
 }
 
-@media (max-width:480px){
+/* ==========================
+      SMALL MOBILE
+========================== */
+
+@media(max-width:480px){
 
 .contact{
 
@@ -172,25 +180,31 @@
 
 .contact-box{
 
-    padding:25px 18px;
+    padding:25px 16px;
+
+    border-radius:18px;
 
 }
 
-.contact h2{
+.contact-box h2{
 
-    font-size:1.7rem;
+    font-size:28px;
 
 }
 
-.contact p{
+.contact-box p{
 
     font-size:14px;
+
+    line-height:1.7;
 
 }
 
 .contact-item{
 
-    padding:12px;
+    padding:14px;
+
+    gap:12px;
 
 }
 
