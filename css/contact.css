@@ -97,3 +97,113 @@
     color:#A1265C;
 
 }
+
+/* ==========================
+        MOBILE VIEW
+========================== */
+
+@media (max-width:768px){
+
+.contact{
+
+    padding:70px 6%;
+
+}
+
+.contact-box{
+
+    width:100%;
+
+    padding:30px 22px;
+
+    border-radius:20px;
+
+}
+
+.contact h2{
+
+    font-size:2rem;
+
+    text-align:center;
+
+}
+
+.contact p{
+
+    font-size:15px;
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.contact-item{
+
+    padding:14px 16px;
+
+    gap:15px;
+
+}
+
+.contact-item i{
+
+    font-size:20px;
+
+}
+
+.contact-item a{
+
+    font-size:15px;
+
+    word-break:break-word;
+
+}
+
+}
+
+@media (max-width:480px){
+
+.contact{
+
+    padding:60px 5%;
+
+}
+
+.contact-box{
+
+    padding:25px 18px;
+
+}
+
+.contact h2{
+
+    font-size:1.7rem;
+
+}
+
+.contact p{
+
+    font-size:14px;
+
+}
+
+.contact-item{
+
+    padding:12px;
+
+}
+
+.contact-item i{
+
+    font-size:18px;
+
+}
+
+.contact-item a{
+
+    font-size:14px;
+
+}
+
+}
