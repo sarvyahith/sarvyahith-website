@@ -1,6 +1,6 @@
-/* ==========================
-        NAVBAR
-========================== */
+/* 
+   NAVBAR
+ */
 
 header{
 
@@ -12,7 +12,7 @@ header{
 
     width:100%;
 
-    background:#ffffff;
+    background:#A0285A;
 
     box-shadow:0 2px 12px rgba(0,0,0,.08);
 
@@ -22,13 +22,11 @@ header{
 
 .navbar{
 
-    max-width:1200px;
-
-    height:90px;
+    max-width:1300px;
 
     margin:auto;
 
-    padding:0 40px;
+    height:90px;
 
     display:flex;
 
@@ -36,25 +34,21 @@ header{
 
     align-items:center;
 
+    padding:0 40px;
+
 }
 
 .logo{
 
     display:flex;
-
     align-items:center;
-
-    gap:12px;
-
 }
 
-.logo h1{
+.logo img{
 
-    font-size:2.4rem;
-
-    color:#A0285A;
-
-    font-weight:700;
+    width:180px;
+    height:auto;
+    display:block;
 
 }
 
@@ -68,7 +62,7 @@ header{
 
 .nav-links a{
 
-    color:#3B2B35;
+    color:#fffdfe;
 
     font-size:1rem;
 
@@ -80,7 +74,7 @@ header{
 
 .nav-links a:hover{
 
-    color:#A0285A;
+    color:#F4D35E;
 
 }
 
@@ -92,15 +86,27 @@ header{
 
 .donate-btn{
 
-    background:#A0285A;
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:140px;
+
+    height:48px;
+
+    background:#B58E3C;
 
     color:#fff;
 
-    padding:12px 28px;
+    padding:0 28px;
 
     border-radius:40px;
 
     font-weight:600;
+
+    white-space:nowrap;
 
     transition:.3s;
 
@@ -108,7 +114,9 @@ header{
 
 .donate-btn:hover{
 
-    background:#7C1D47;
+    background:#996F26;
+
+    transform:translateY(-2px);
 
 }
 
@@ -126,24 +134,22 @@ header{
       RESPONSIVE
 ========================== */
 
-@media(max-width:900px){
+@media (max-width:900px){
 
     .nav-links{
-
         display:none;
-
-    }
-
-    .donate-btn{
-
-        display:none;
-
     }
 
     .menu-toggle{
-
         display:block;
+    }
 
+    .donate-btn{
+        display:inline-flex;
+        min-width:110px;
+        height:42px;
+        padding:0 18px;
+        font-size:15px;
     }
 
 }
@@ -300,7 +306,7 @@ header{
 
 }
 
-.sidebar nav{
+.sidebar-links{
 
     display:flex;
 
@@ -310,7 +316,7 @@ header{
 
 }
 
-.sidebar nav a{
+.sidebar-links a{
 
     color:#333;
 
@@ -320,7 +326,7 @@ header{
 
 }
 
-.sidebar nav a:hover{
+.sidebar-links a:hover{
 
     color:#A0285A;
 

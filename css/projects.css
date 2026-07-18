@@ -323,3 +323,38 @@
 }
 
 }
+/* ==========================
+      BACK TO HOME BUTTON
+========================== */
+
+.back-home{
+
+    display:inline-block;
+
+    background:#C89B3C;
+
+    color:white;
+
+    padding:12px 28px;
+
+    border-radius:30px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+    transition:0.3s ease;
+
+}
+
+.back-home:hover{
+
+    background:#B8862F;
+
+    color:white;
+
+    transform:translateY(-2px);
+
+}
