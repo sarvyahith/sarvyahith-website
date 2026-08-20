@@ -329,8 +329,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     <div class="certificate-container">
 
         <div class="certificate-icon">
+
             <i class="fa-solid fa-certificate"></i>
+
         </div>
+
 
         <div class="certificate-content">
 
@@ -347,8 +350,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
                 Verify its authenticity using your Certificate ID.
             </p>
 
-            <button type="button" class="verify-btn" id="openVerification">
+            <button
+                type="button"
+                class="verify-btn"
+                id="openVerification">
+
                 Verify Certificate
+
             </button>
 
         </div>
@@ -358,70 +366,96 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 </section>
 
 
-<!-- ================= VERIFICATION MODAL ================= -->
+<!-- ================= CERTIFICATE VERIFICATION POPUP ================= -->
 
-<div class="verification-overlay" id="verificationModal">
+<div
+    class="verification-overlay"
+    id="verificationOverlay">
 
-    <div class="verification-modal">
+    <div class="verification-box">
 
-        <button class="close-verification" id="closeVerification">
+
+        <!-- CLOSE BUTTON -->
+
+        <button
+            type="button"
+            class="close-verification"
+            id="closeVerification">
+
             &times;
+
         </button>
 
-        <h2>Verify Certificate</h2>
 
-        <form id="certificateForm">
+        <!-- TITLE -->
 
-            <label for="courseCategory">
-                Course Category
-            </label>
-
-            <select id="courseCategory" required>
-
-                <option value="">
-                    Select
-                </option>
-
-                <option value="summer-internship">
-                    Summer Internship Programme 2026
-                </option>
-
-            </select>
+        <h2>
+            Verify Certificate
+        </h2>
 
 
-            <label for="certificateId">
-                Certificate ID
-            </label>
+        <!-- COURSE CATEGORY -->
 
-            <input
-                type="text"
-                id="certificateId"
-                placeholder="Enter Certificate ID"
-                required
-            >
+        <label for="courseCategory">
+            Course Category
+        </label>
+
+        <select id="courseCategory">
+
+            <option value="">
+                Select
+            </option>
+
+            <option value="Summer Internship Programme 2026">
+                Summer Internship Programme 2026
+            </option>
+
+        </select>
 
 
-            <button type="submit" class="verify-submit">
-                Verify Certificate
-            </button>
+        <!-- CERTIFICATE ID -->
 
-        </form>
+        <label for="certificateId">
+            Certificate ID
+        </label>
+
+        <input
+            type="text"
+            id="certificateId"
+            placeholder="Enter Certificate ID"
+        >
 
 
-        <!-- Verification Result -->
+        <!-- VERIFY BUTTON -->
+
+        <button
+            type="button"
+            class="verify-submit"
+            id="verifyCertificate">
+
+            Verify Certificate
+
+        </button>
+
+
+        <!-- VERIFICATION RESULT -->
 
         <div id="verificationResult"></div>
 
 
-        <div class="verification-note">
+        <!-- CONTACT NOTE -->
 
-            Facing any problem? Please contact us at
+        <p class="verification-note">
+
+            Facing any problem?
+            Please contact us at
 
             <a href="mailto:sarvyahith@gmail.com">
                 sarvyahith@gmail.com
             </a>
 
-        </div>
+        </p>
+
 
     </div>
 
@@ -478,6 +512,104 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
     <script src="js/script.js"></script>
     <script src="js/main.js"></script>
+
+    <script src="js/script.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+
+// ================= CERTIFICATE VERIFICATION =================
+
+const openVerification = document.getElementById("openVerification");
+const closeVerification = document.getElementById("closeVerification");
+const verificationOverlay = document.getElementById("verificationOverlay");
+const verifyCertificate = document.getElementById("verifyCertificate");
+
+
+// OPEN VERIFICATION POPUP
+
+openVerification.addEventListener("click", function () {
+
+    verificationOverlay.classList.add("active");
+
+});
+
+
+// CLOSE VERIFICATION POPUP
+
+closeVerification.addEventListener("click", function () {
+
+    verificationOverlay.classList.remove("active");
+
+});
+
+
+// CLOSE WHEN CLICKING OUTSIDE THE BOX
+
+verificationOverlay.addEventListener("click", function (event) {
+
+    if (event.target === verificationOverlay) {
+
+        verificationOverlay.classList.remove("active");
+
+    }
+
+});
+
+
+// VERIFY BUTTON
+
+verifyCertificate.addEventListener("click", function () {
+
+    const courseCategory =
+        document.getElementById("courseCategory").value;
+
+    const certificateId =
+        document.getElementById("certificateId").value.trim();
+
+    const result =
+        document.getElementById("verificationResult");
+
+
+    if (courseCategory === "") {
+
+        result.innerHTML = `
+            <div class="verification-error">
+                Please select a course category.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    if (certificateId === "") {
+
+        result.innerHTML = `
+            <div class="verification-error">
+                Please enter your Certificate ID.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    // TEMPORARY TEST RESULT
+    // Google Sheet verification will be connected here later.
+
+    result.innerHTML = `
+        <div class="verification-success">
+            Certificate ID received successfully.
+        </div>
+    `;
+
+});
+
+</script>
+
 </body>
 
 </html>

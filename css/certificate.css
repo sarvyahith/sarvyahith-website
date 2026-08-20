@@ -173,7 +173,7 @@
    VERIFICATION MODAL
 ================================ */
 
-.verification-modal{
+.verification-box{
 
     position:relative;
 
@@ -191,7 +191,7 @@
 
 }
 
-.verification-modal h2{
+.verification-box h2{
 
     text-align:center;
 
@@ -229,7 +229,7 @@
 
 /* Form */
 
-.verification-modal label{
+.verification-box label{
 
     display:block;
 
@@ -241,8 +241,8 @@
 
 }
 
-.verification-modal input,
-.verification-modal select{
+.verification-box input,
+.verification-box select{
 
     width:100%;
 
@@ -264,8 +264,8 @@
 
 }
 
-.verification-modal input:focus,
-.verification-modal select:focus{
+.verification-box input:focus,
+.verification-box select:focus{
 
     border-color:#A0285A;
 
@@ -453,7 +453,7 @@
 
     }
 
-    .verification-modal{
+    .verification-box{
 
         padding:30px 22px;
 
@@ -479,7 +479,7 @@
 
     }
 
-    .verification-modal h2{
+    .verification-box h2{
 
         font-size:23px;
 
