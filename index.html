@@ -321,6 +321,111 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 </section>
 
+<!-- ================= CERTIFICATE VERIFICATION ================= -->
+
+<section class="certificate-verification">
+
+    <div class="certificate-container">
+
+        <div class="certificate-icon">
+            <i class="fa-solid fa-certificate"></i>
+        </div>
+
+        <div class="certificate-content">
+
+            <span class="section-tag">
+                CERTIFICATE VERIFICATION
+            </span>
+
+            <h2>
+                Verify Your Certificate
+            </h2>
+
+            <p>
+                Have a Sarvyahith certificate?
+                Verify its authenticity using your Certificate ID.
+            </p>
+
+            <button type="button" class="verify-btn" id="openVerification">
+                Verify Certificate
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= VERIFICATION MODAL ================= -->
+
+<div class="verification-overlay" id="verificationModal">
+
+    <div class="verification-modal">
+
+        <button class="close-verification" id="closeVerification">
+            &times;
+        </button>
+
+        <h2>Verify Certificate</h2>
+
+        <form id="certificateForm">
+
+            <label for="courseCategory">
+                Course Category
+            </label>
+
+            <select id="courseCategory" required>
+
+                <option value="">
+                    Select
+                </option>
+
+                <option value="summer-internship">
+                    Summer Internship Programme 2026
+                </option>
+
+            </select>
+
+
+            <label for="certificateId">
+                Certificate ID
+            </label>
+
+            <input
+                type="text"
+                id="certificateId"
+                placeholder="Enter Certificate ID"
+                required
+            >
+
+
+            <button type="submit" class="verify-submit">
+                Verify Certificate
+            </button>
+
+        </form>
+
+
+        <!-- Verification Result -->
+
+        <div id="verificationResult"></div>
+
+
+        <div class="verification-note">
+
+            Facing any problem? Please contact us at
+
+            <a href="mailto:sarvyahith@gmail.com">
+                sarvyahith@gmail.com
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
 <!-- ================= CONTACT ================= -->
 
 <section id="contact" class="contact">
