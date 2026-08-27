@@ -8,7 +8,7 @@ const verificationOverlay = document.getElementById("verificationOverlay");
 const certificateId = document.getElementById("certificateId");
 const verifyCertificate = document.getElementById("verifyCertificate");
 const verificationResult = document.getElementById("verificationResult");
-const courseCategory = document.getElementById("courseCategory");
+const courseCategory = document.getElementById("Category");
 
 
 /* OPEN POPUP */
@@ -36,7 +36,7 @@ verifyCertificate.addEventListener("click", async () => {
     if (courseCategory.value === "") {
         verificationResult.innerHTML = `
             <p class="verification-error">
-                Please select a course category.
+                Please select a  category.
             </p>
         `;
         return;
