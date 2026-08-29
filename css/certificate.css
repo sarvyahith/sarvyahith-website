@@ -113,7 +113,7 @@
 
     padding:14px 30px;
 
-    background:#A0285A;
+    background:#B58E3C;
 
     color:white;
 
@@ -131,11 +131,12 @@
 
 .verify-btn:hover{
 
-    background:#7C1D47;
-
-    transform:translateY(-2px);
-
+   
+    background: #996F26;
+    transform: translateY(-2px);
 }
+
+
 
 
 /* ================================
