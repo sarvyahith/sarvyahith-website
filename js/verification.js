@@ -1,7 +1,7 @@
 const SUPABASE_URL = "https://xvxpyfcrhypzimsxaudw.supabase.co";
 const SUPABASE_KEY = "sb_publishable_a8bomxTUu-n5gxOA3s7Vxg_YOc__2iO";
 
-const openVerification = document.getElementById("openVerification");
+const verifyTriggers = document.querySelectorAll(".verify-trigger");
 const closeVerification = document.getElementById("closeVerification");
 const verificationOverlay = document.getElementById("verificationOverlay");
 
@@ -13,8 +13,10 @@ const courseCategory = document.getElementById("Category");
 
 /* OPEN POPUP */
 
-openVerification.addEventListener("click", () => {
-    verificationOverlay.classList.add("active");
+verifyTriggers.forEach(button => {
+    button.addEventListener("click", () => {
+        verificationOverlay.classList.add("active");
+    });
 });
 
 
