@@ -6,7 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sarvyahith NGO</title>
+    <title>Sarvyahith - A Youth led Organisation</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/favicon.png">
 
     <!-- ================= GOOGLE FONT ================= -->
 
@@ -88,15 +93,27 @@
             </ul>
 
 
-            <!-- Donate Button -->
+            <!-- Nav Actions (Donate & Verification) -->
 
-            <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSe8RxMqnMDVP4a8fYoVwiVLUGCJBUxsFZ9SXjSX2RFxs6MmOQ/viewform?usp=publish-editor"
-                target="_blank"
-                class="donate-btn"
-            >
-                Donate
-            </a>
+            <div class="nav-actions">
+
+                <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSe8RxMqnMDVP4a8fYoVwiVLUGCJBUxsFZ9SXjSX2RFxs6MmOQ/viewform?usp=publish-editor"
+                    target="_blank"
+                    class="donate-btn"
+                >
+                    Donate
+                </a>
+
+                <button
+                    type="button"
+                    class="donate-btn nav-verify-btn verify-trigger"
+                    id="navOpenVerification"
+                >
+                    Verify Certificate
+                </button>
+
+            </div>
 
 
             <!-- Mobile Menu Icon -->
@@ -165,13 +182,25 @@
         </div>
 
 
-        <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSe8RxMqnMDVP4a8fYoVwiVLUGCJBUxsFZ9SXjSX2RFxs6MmOQ/viewform?usp=publish-editor"
-            target="_blank"
-            class="sidebar-donate"
-        >
-            Donate
-        </a>
+        <div class="sidebar-actions">
+
+            <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSe8RxMqnMDVP4a8fYoVwiVLUGCJBUxsFZ9SXjSX2RFxs6MmOQ/viewform?usp=publish-editor"
+                target="_blank"
+                class="sidebar-donate"
+            >
+                Donate
+            </a>
+
+            <button
+                type="button"
+                class="sidebar-verify verify-trigger"
+                id="sidebarOpenVerification"
+            >
+                Verify Certificate
+            </button>
+
+        </div>
 
     </aside>
 
@@ -488,7 +517,7 @@
 
     <!-- ================= CERTIFICATE VERIFICATION ================= -->
 
-    <section class="certificate-verification">
+    <section class="certificate-verification" id="verification">
 
         <div class="certificate-container">
 
@@ -520,7 +549,7 @@
 
                 <button
                     type="button"
-                    class="verify-btn"
+                    class="verify-btn verify-trigger"
                     id="openVerification"
                 >
                     Verify Certificate
@@ -562,10 +591,10 @@
             </h2>
 
 
-            <!-- COURSE CATEGORY -->
+            <!-- CATEGORY -->
 
             <label for="courseCategory">
-                Course Category
+                Category
             </label>
 
 
@@ -712,6 +741,20 @@
 
             </div>
 
+
+            <div class="contact-item">
+
+                <i class="fab fa-linkedin"></i>
+
+                <a
+                    href="https://www.linkedin.com/company/sarvyahith-youth-led-welfare-awareness-organization/posts/?feedView=all"
+                    target="_blank"
+                >
+                    LinkedIn
+                </a>
+
+            </div>
+
         </div>
 
     </section>
@@ -738,6 +781,12 @@
         const openVerification =
             document.getElementById("openVerification");
 
+        const navOpenVerification =
+            document.getElementById("navOpenVerification");
+
+        const sidebarOpenVerification =
+            document.getElementById("sidebarOpenVerification");
+
         const closeVerification =
             document.getElementById("closeVerification");
 
@@ -757,16 +806,51 @@
             document.getElementById("verificationResult");
 
 
-        // ================= OPEN POPUP =================
+        // ================= OPEN POPUP / VERIFICATION SECTION =================
 
-        openVerification.addEventListener(
-            "click",
-            function () {
+        function openVerificationModal() {
 
-                verificationOverlay.classList.add("active");
-
+            // Close mobile sidebar if open
+            const sidebar = document.getElementById("sidebar");
+            const overlay = document.getElementById("overlay");
+            if (sidebar && sidebar.classList.contains("show")) {
+                sidebar.classList.remove("show");
             }
-        );
+            if (overlay && overlay.classList.contains("show")) {
+                overlay.classList.remove("show");
+            }
+
+            // Scroll smoothly to verification section
+            const verificationSec =
+                document.getElementById("verification") ||
+                document.querySelector(".certificate-verification");
+
+            if (verificationSec) {
+                verificationSec.scrollIntoView({ behavior: "smooth" });
+            }
+
+            // Open verification modal overlay
+            if (verificationOverlay) {
+                verificationOverlay.classList.add("active");
+            }
+
+        }
+
+        if (openVerification) {
+            openVerification.addEventListener("click", openVerificationModal);
+        }
+
+        if (navOpenVerification) {
+            navOpenVerification.addEventListener("click", openVerificationModal);
+        }
+
+        if (sidebarOpenVerification) {
+            sidebarOpenVerification.addEventListener("click", openVerificationModal);
+        }
+
+        document.querySelectorAll(".verify-trigger").forEach(function (btn) {
+            btn.addEventListener("click", openVerificationModal);
+        });
 
 
         // ================= CLOSE POPUP =================
@@ -816,7 +900,7 @@
 
                     verificationResult.innerHTML = `
                         <div class="verification-error">
-                            Please select a course category.
+                            Please select a category.
                         </div>
                     `;
 
