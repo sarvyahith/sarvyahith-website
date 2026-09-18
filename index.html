@@ -604,8 +604,16 @@
                     Select
                 </option>
 
-                <option value="Summer Internship Programme 2026">
-                    Summer Internship Programme 2026
+                <option value="Summer Internship Program 2026 Round 1">
+                    Summer Internship Program 2026 Round 1
+                </option>
+
+                <option value="Summer Internship Program 2026 Round 2">
+                    Summer Internship Program 2026 Round 2
+                </option>
+            
+                <option value="Website Development">
+                    Website Development
                 </option>
 
             </select>
@@ -768,24 +776,29 @@
     <script src="js/main.js"></script>
 
 
+
     <!-- ================= CERTIFICATE VERIFICATION SCRIPT ================= -->
+
+   <!-- ================= CERTIFICATE VERIFICATION SCRIPT ================= -->
 
     <script>
 
-        const VERIFICATION_API =
+        // ================= VERIFICATION APIS =================
+
+        const ROUND1_API =
             "https://script.google.com/macros/s/AKfycby7Igv3hmlNpEGt9fip-YWGbeEKALCKzkLSKINh372V1FOy2EPNRdU1-qR_DDgeDX57/exec";
 
+        const ROUND2_API =
+            "https://script.google.com/macros/s/AKfycbx7FsnjWf2I0ehvQ7RyCOlmM_PrCXhWY1QKJneLGO_db3F0zpi21WutFRFMXxar3km-/exec";
 
-        // ================= GET ELEMENTS =================
+        const WEBSITE_API =
+            "https://script.google.com/macros/s/AKfycbx7z_db86zqSb2yk1hA3NfRs0sdwZWjzyvWpMVngIjzN7kE-7J844otjp9zueDHS6kSvA/exec";
+
+
+        // ================= ELEMENTS =================
 
         const openVerification =
             document.getElementById("openVerification");
-
-        const navOpenVerification =
-            document.getElementById("navOpenVerification");
-
-        const sidebarOpenVerification =
-            document.getElementById("sidebarOpenVerification");
 
         const closeVerification =
             document.getElementById("closeVerification");
@@ -806,245 +819,210 @@
             document.getElementById("verificationResult");
 
 
-        // ================= OPEN POPUP / VERIFICATION SECTION =================
+        // ================= OPEN POPUP =================
 
-        function openVerificationModal() {
-
-            // Close mobile sidebar if open
-            const sidebar = document.getElementById("sidebar");
-            const overlay = document.getElementById("overlay");
-            if (sidebar && sidebar.classList.contains("show")) {
-                sidebar.classList.remove("show");
-            }
-            if (overlay && overlay.classList.contains("show")) {
-                overlay.classList.remove("show");
-            }
-
-            // Scroll smoothly to verification section
-            const verificationSec =
-                document.getElementById("verification") ||
-                document.querySelector(".certificate-verification");
-
-            if (verificationSec) {
-                verificationSec.scrollIntoView({ behavior: "smooth" });
-            }
-
-            // Open verification modal overlay
-            if (verificationOverlay) {
-                verificationOverlay.classList.add("active");
-            }
-
-        }
-
-        if (openVerification) {
-            openVerification.addEventListener("click", openVerificationModal);
-        }
-
-        if (navOpenVerification) {
-            navOpenVerification.addEventListener("click", openVerificationModal);
-        }
-
-        if (sidebarOpenVerification) {
-            sidebarOpenVerification.addEventListener("click", openVerificationModal);
-        }
-
-        document.querySelectorAll(".verify-trigger").forEach(function (btn) {
-            btn.addEventListener("click", openVerificationModal);
+        openVerification.addEventListener("click", function () {
+            verificationOverlay.classList.add("active");
         });
 
 
         // ================= CLOSE POPUP =================
 
-        closeVerification.addEventListener(
-            "click",
-            function () {
+        closeVerification.addEventListener("click", function () {
+            verificationOverlay.classList.remove("active");
+        });
 
+
+        // Close when clicking outside the box
+
+        verificationOverlay.addEventListener("click", function (event) {
+
+            if (event.target === verificationOverlay) {
                 verificationOverlay.classList.remove("active");
-
             }
-        );
 
-
-        // ================= CLOSE OUTSIDE POPUP =================
-
-        verificationOverlay.addEventListener(
-            "click",
-            function (event) {
-
-                if (event.target === verificationOverlay) {
-
-                    verificationOverlay.classList.remove("active");
-
-                }
-
-            }
-        );
+        });
 
 
         // ================= VERIFY CERTIFICATE =================
 
-        verifyCertificate.addEventListener(
-            "click",
-            async function () {
+        verifyCertificate.addEventListener("click", async function () {
 
-                const selectedCategory =
-                    courseCategory.value.trim();
+            const selectedRound =
+                courseCategory.value.trim();
 
-                const enteredCertificateId =
-                    certificateId.value.trim();
+            const enteredCertificateId =
+                certificateId.value.trim();
 
 
-                // ================= CHECK CATEGORY =================
+            // ---------- CHECK CATEGORY ----------
 
-                if (selectedCategory === "") {
+            if (selectedRound === "") {
 
-                    verificationResult.innerHTML = `
-                        <div class="verification-error">
-                            Please select a category.
-                        </div>
-                    `;
+                verificationResult.innerHTML = `
+                    <div class="verification-error">
+                        Please select a course category.
+                    </div>
+                `;
 
-                    return;
-
-                }
-
-
-                // ================= CHECK CERTIFICATE ID =================
-
-                if (enteredCertificateId === "") {
-
-                    verificationResult.innerHTML = `
-                        <div class="verification-error">
-                            Please enter your Certificate ID.
-                        </div>
-                    `;
-
-                    return;
-
-                }
+                return;
+            }
 
 
-                // ================= LOADING =================
+            // ---------- CHECK CERTIFICATE ID ----------
 
-                verifyCertificate.disabled = true;
+            if (enteredCertificateId === "") {
 
-                verifyCertificate.textContent =
-                    "Verifying...";
+                verificationResult.innerHTML = `
+                    <div class="verification-error">
+                        Please enter your Certificate ID.
+                    </div>
+                `;
 
-                verificationResult.innerHTML = "";
-
-
-                try {
-
-                    const response =
-                        await fetch(
-                            `${VERIFICATION_API}?id=${encodeURIComponent(enteredCertificateId)}`
-                        );
+                return;
+            }
 
 
-                    // ================= CHECK RESPONSE =================
+            // ---------- SELECT API ----------
 
-                    if (!response.ok) {
+            let verificationAPI;
 
-                        throw new Error(
-                            "Unable to connect to verification service."
-                        );
+            if (selectedRound === "round1") {
 
-                    }
+                verificationAPI = ROUND1_API;
 
+            }
+            else if (selectedRound === "round2") {
 
-                    const data =
-                        await response.json();
+                verificationAPI = ROUND2_API;
 
+            }
+            else if (selectedRound === "website") {
 
-                    // ================= CERTIFICATE NOT FOUND =================
+                verificationAPI = WEBSITE_API;
 
-                    if (!data.success) {
-
-                        verificationResult.innerHTML = `
-                            <div class="verification-error">
-
-                                <strong>
-                                    Certificate Not Verified
-                                </strong>
-
-                                We regret to inform you that the submitted
-                                certificate could not be authenticated against
-                                the records available with Sarvyahith.
-                                The details provided do not match our official
-                                records, or the certificate could not be verified
-                                as having been issued by Sarvyahith.
-
-                            </div>
-                        `;
-
-                        return;
-
-                    }
+            }
 
 
-                    // ================= CERTIFICATE VERIFIED =================
+            // ---------- LOADING ----------
 
-                    verificationResult.innerHTML = `
-                        <div class="verification-success">
+            verifyCertificate.disabled = true;
 
-                            <strong>
-                                Certificate Verified Successfully
-                            </strong>
+            verifyCertificate.textContent =
+                "Verifying...";
 
-                            ${data.name} was an intern at
-                            Sarvyahith Summer Internship Programme 2026,
-                            during the period of 15 June 2026 to 15 August 2026.
-
-                            The submitted internship certificate has been
-                            verified against our records and is authentic and
-                            validly issued by Sarvyahith Foundation.
-
-                        </div>
-                    `;
-
-                }
+            verificationResult.innerHTML = "";
 
 
-                catch (error) {
+            try {
 
-                    console.error(
-                        "Certificate verification error:",
-                        error
+                const response =
+                    await fetch(
+                        `${verificationAPI}?id=${encodeURIComponent(enteredCertificateId)}`
                     );
 
 
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Unable to connect to verification service."
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                // ---------- INVALID CERTIFICATE ----------
+
+                if (!data.success) {
+
                     verificationResult.innerHTML = `
                         <div class="verification-error">
 
                             <strong>
-                                Verification Service Unavailable
+                                Certificate Not Verified
                             </strong>
 
-                            We are unable to verify the certificate
-                            at the moment. Please try again later or
-                            contact us at sarvyahith@gmail.com.
+                            We regret to inform you that the submitted
+                            certificate could not be authenticated against
+                            the records available with Sarvyahith.
+                            The details provided do not match our official
+                            records, or the certificate could not be verified
+                            as having been issued by Sarvyahith.
 
                         </div>
                     `;
 
+                    return;
                 }
 
 
-                finally {
+                // ---------- SUCCESS ----------
 
-                    verifyCertificate.disabled = false;
+                verificationResult.innerHTML = `
+                    <div class="verification-success">
 
-                    verifyCertificate.textContent =
-                        "Verify Certificate";
+                        <strong>
+                            Certificate Verified Successfully
+                        </strong>
 
-                }
+                        ${data.name} was an intern at
+                        Sarvyahith Summer Internship Programme 2026,
+                        during the period of 15 June 2026 to 15 August 2026.
+                        The submitted internship certificate has been
+                        verified against our records and is authentic and
+                        validly issued by Sarvyahith Foundation.
+
+                    </div>
+                `;
 
             }
-        );
+
+
+            // ---------- CONNECTION ERROR ----------
+
+            catch (error) {
+
+                console.error(
+                    "Certificate verification error:",
+                    error
+                );
+
+                verificationResult.innerHTML = `
+                    <div class="verification-error">
+
+                        <strong>
+                            Verification Service Unavailable
+                        </strong>
+
+                        We are unable to verify the certificate
+                        at the moment. Please try again later or
+                        contact us at sarvyahith@gmail.com.
+
+                    </div>
+                `;
+
+            }
+
+
+            // ---------- RESET BUTTON ----------
+
+            finally {
+
+                verifyCertificate.disabled = false;
+
+                verifyCertificate.textContent =
+                    "Verify Certificate";
+
+            }
+
+        });
 
     </script>
-
+  
 
 </body>
 
