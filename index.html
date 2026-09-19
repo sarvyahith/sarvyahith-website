@@ -779,8 +779,6 @@
 
     <!-- ================= CERTIFICATE VERIFICATION SCRIPT ================= -->
 
-   <!-- ================= CERTIFICATE VERIFICATION SCRIPT ================= -->
-
     <script>
 
         // ================= VERIFICATION APIS =================
@@ -799,6 +797,12 @@
 
         const openVerification =
             document.getElementById("openVerification");
+
+        const navOpenVerification =
+            document.getElementById("navOpenVerification");
+
+        const sidebarOpenVerification =
+            document.getElementById("sidebarOpenVerification");
 
         const closeVerification =
             document.getElementById("closeVerification");
@@ -819,28 +823,78 @@
             document.getElementById("verificationResult");
 
 
-        // ================= OPEN POPUP =================
+        // ================= OPEN POPUP / VERIFICATION SECTION =================
 
-        openVerification.addEventListener("click", function () {
-            verificationOverlay.classList.add("active");
+        function openVerificationModal() {
+
+            // Close mobile sidebar if open
+            const sidebar = document.getElementById("sidebar");
+            const overlay = document.getElementById("overlay");
+            if (sidebar && sidebar.classList.contains("show")) {
+                sidebar.classList.remove("show");
+            }
+            if (overlay && overlay.classList.contains("show")) {
+                overlay.classList.remove("show");
+            }
+
+            // Scroll smoothly to verification section
+            const verificationSec =
+                document.getElementById("verification") ||
+                document.querySelector(".certificate-verification");
+
+            if (verificationSec) {
+                verificationSec.scrollIntoView({ behavior: "smooth" });
+            }
+
+            // Open verification modal overlay
+            if (verificationOverlay) {
+                verificationOverlay.classList.add("active");
+            }
+
+        }
+
+        // Attach event listeners to all verify buttons
+        const triggerElements = [
+            openVerification,
+            navOpenVerification,
+            sidebarOpenVerification,
+            ...document.querySelectorAll(".verify-trigger")
+        ].filter(Boolean);
+
+        const uniqueTriggers = Array.from(new Set(triggerElements));
+        uniqueTriggers.forEach(function (btn) {
+            btn.addEventListener("click", openVerificationModal);
         });
 
 
         // ================= CLOSE POPUP =================
 
-        closeVerification.addEventListener("click", function () {
-            verificationOverlay.classList.remove("active");
-        });
+        if (closeVerification) {
+            closeVerification.addEventListener("click", function () {
+                if (verificationOverlay) {
+                    verificationOverlay.classList.remove("active");
+                }
+            });
+        }
 
 
         // Close when clicking outside the box
 
-        verificationOverlay.addEventListener("click", function (event) {
+        if (verificationOverlay) {
+            verificationOverlay.addEventListener("click", function (event) {
+                if (event.target === verificationOverlay) {
+                    verificationOverlay.classList.remove("active");
+                }
+            });
+        }
 
-            if (event.target === verificationOverlay) {
+
+        // Close on Escape key
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && verificationOverlay && verificationOverlay.classList.contains("active")) {
                 verificationOverlay.classList.remove("active");
             }
-
         });
 
 
