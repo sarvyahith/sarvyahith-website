@@ -962,6 +962,16 @@
 
                 // ---------- SUCCESS ----------
 
+                let internshipDates;
+
+                if (selectedRound === "round2") {
+                    internshipDates =
+                        "during the period of 25 June 2026 to 25 August 2026.";
+                } else {
+                    internshipDates =
+                        "during the period of 15 June 2026 to 15 August 2026.";
+                }
+
                 verificationResult.innerHTML = `
                     <div class="verification-success">
 
@@ -971,7 +981,7 @@
 
                         ${data.name} was an intern at
                         Sarvyahith Summer Internship Programme 2026,
-                        during the period of 15 June 2026 to 15 August 2026.
+                        ${internshipDates}
                         The submitted internship certificate has been
                         verified against our records and is authentic and
                         validly issued by Sarvyahith Foundation.
